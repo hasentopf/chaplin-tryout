@@ -1,7 +1,7 @@
     <label for="Test">{{label}}</label>
     <select id="Test" name="Test">
         <option value="">-- Choose Test --</option>
-    {{#each values }}
-        <option>{{select}}</option>
+    {{#each options }}
+        <option value="{{ value }}">{{ option }}</option>
     {{/each}}
     </select>

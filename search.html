@@ -1,105 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Search Application</title>
-  <style>
+    <meta charset="utf-8">
+    <title>Search Application</title>
+    <link href="css/html.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="bower_components/requirejs/require.js"></script>
+    <script>
+        // Configure the AMD module loader
+        requirejs.config({
+            // The path where your JavaScripts are located
+            baseUrl: './js/',
+            // Specify the paths of vendor libraries
+            paths: {
+                jquery: '../bower_components/jquery/jquery',
+                underscore: '../bower_components/lodash/dist/lodash',
+                backbone: '../bower_components/backbone/backbone',
+                handlebars: '../bower_components/handlebars/handlebars',
+                text: '../bower_components/requirejs-text/text',
+                chaplin: '../bower_components/chaplin/chaplin'
+            },
+            // Underscore and Backbone are not AMD-capable per default,
+            // so we need to use the AMD wrapping of RequireJS
+            shim: {
+                underscore: {
+                    exports: '_'
+                },
+                backbone: {
+                    deps: ['underscore', 'jquery'],
+                    exports: 'Backbone'
+                },
+                handlebars: {
+                    exports: 'Handlebars'
+                }
+            }
+            // For easier development, disable browser caching
+            // Of course, this should be removed in a production environment
+            , urlArgs: 'bust=' + (new Date()).getTime() // TODO
+        });
 
-      * {
-          -webkit-box-sizing: border-box;
-          -moz-box-sizing: border-box;
-          box-sizing: border-box;
-      }
-      body {
-          font-family: sans-serif;
-      }
-      .header {
-          width: 551px;
-          margin: 0 auto;
-          padding: 5px;
-          font-size: 24px;
-          background-color: #fff;
-          border-bottom: 2px solid #427684;
-          font-weight: 300;
-          font-size: 1.25rem;
-          line-height: 1.2;
-      }
-      .header-link {
-          display: inline-block;
-          text-decoration: none;
-          color: #3f894a;
-          padding: 4px 15px;
-      }
-      .header-link.last-link {
-          padding-left: 9px;
-      }
-      .header-link:visited {
-          color: #3f894a;
-      }
-      .header-link:hover {
-          color: #27552e;
-          border-color: #27552e;
-      }
-      .header ul {
-          margin: 5px 0;
-      }
-      .header li {
-          display: inline;
-      }
-
-      .home-page {
-          width: 551px;
-          height: 275px;
-          margin: 0 auto;
-          padding: 5px;
-          margin-bottom: 0.5em;
-          color: #fff;
-          background-color: #7fc4d6;
-      }
-  </style>
-  <script src="bower_components/requirejs/require.js"></script>
-  <script>
-  // Configure the AMD module loader
-  requirejs.config({
-    // The path where your JavaScripts are located
-    baseUrl: './js/',
-    // Specify the paths of vendor libraries
-    paths: {
-      jquery: '../bower_components/jquery/jquery',
-      underscore: '../bower_components/lodash/dist/lodash',
-      backbone: '../bower_components/backbone/backbone',
-      handlebars: '../bower_components/handlebars/handlebars',
-      text: '../bower_components/requirejs-text/text',
-      chaplin: '../bower_components/chaplin/chaplin'
-    },
-    // Underscore and Backbone are not AMD-capable per default,
-    // so we need to use the AMD wrapping of RequireJS
-    shim: {
-      underscore: {
-        exports: '_'
-      },
-      backbone: {
-        deps: ['underscore', 'jquery'],
-        exports: 'Backbone'
-      },
-      handlebars: {
-        exports: 'Handlebars'
-      }
-    }
-    // For easier development, disable browser caching
-    // Of course, this should be removed in a production environment
-    //, urlArgs: 'bust=' +  (new Date()).getTime()
-  });
-
-  // Bootstrap the application
-  require(['application', 'routes'], function(Application, routes) {
-    new Application({
-        routes: routes,
-        controllerSuffix: '-controller',
-        root: '/chaplin-boilerplate-plain/'
-    });
-  });
-  </script>
+        // Bootstrap the application
+        require(['application', 'routes'], function (Application, routes) {
+            new Application({
+                routes: routes,
+                controllerSuffix: '-controller',
+                root: '/chaplin-boilerplate-plain/'
+            });
+        });
+    </script>
 </head>
-<body></body>
+<body>
+
+</body>
 </html>

@@ -7,10 +7,11 @@ define([
   var Search = Model.extend({
     defaults: {
         label: 'Test Input',
-        values: [{
-            1: 'Test',
-            2: 'Qwertz'
-        }]
+        options: [
+            {'option': 'Test', 'value': 1 },
+            {'option': 'Qwerzt', 'value': 2 },
+            {'option': 'Test 123', 'value': 3 }
+        ]
     }
 
     // ,initialize: function(attributes, options) {
